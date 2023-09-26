@@ -1,0 +1,41 @@
+=============================================
+Dataset: Airbox
+Method:  MMDA
+=============================================
+Source: 0 ---> Target: 5
+=============================================
+[Epoch : 1/5]
+Total_loss	: 53.4461
+Coral_loss	: 0.0000
+MMD_loss	: 3.4679
+cond_ent_wt	: 4.5962
+Src_reg_loss	: 0.7564
+-------------------------------------
+[Epoch : 2/5]
+Total_loss	: 50.0672
+Coral_loss	: 0.0000
+MMD_loss	: 3.0264
+cond_ent_wt	: 4.5267
+Src_reg_loss	: 0.4837
+-------------------------------------
+[Epoch : 3/5]
+Total_loss	: 44.9612
+Coral_loss	: 0.0000
+MMD_loss	: 2.2665
+cond_ent_wt	: 4.5035
+Src_reg_loss	: 0.3439
+-------------------------------------
+[Epoch : 4/5]
+Total_loss	: 42.1513
+Coral_loss	: 0.0000
+MMD_loss	: 1.8470
+cond_ent_wt	: 4.4919
+Src_reg_loss	: 0.2720
+-------------------------------------
+[Epoch : 5/5]
+Total_loss	: 40.7346
+Coral_loss	: 0.0000
+MMD_loss	: 1.6369
+cond_ent_wt	: 4.4849
+Src_reg_loss	: 0.2260
+-------------------------------------

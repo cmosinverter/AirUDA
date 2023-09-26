@@ -1,5 +1,7 @@
 import torch
 import torch.nn as nn
+import matplotlib.pyplot as plt
+from torch.autograd import Function
 
 def get_backbone_class(backbone_name):
     """Return the algorithm class with the given name."""
@@ -16,7 +18,7 @@ def get_backbone_class(backbone_name):
 class GRU(nn.Module):
     def __init__(self, configs):
         super(GRU, self).__init__()
-        self.gru = nn.GRU(configs.input_channels, configs.final_out_channels, configs.lstm_n_layers, batch_first=True)
+        self.gru = nn.GRU(configs.input_channels, configs.final_out_channels, configs.gru_n_layers, batch_first=True)
         
     def forward(self, x_in):
         out = x_in.permute(0, 2, 1)
@@ -42,3 +44,38 @@ class Regressor(nn.Module):
         out = self.fc2(out)
     
         return out
+    
+class Discriminator(nn.Module):
+    """Discriminator model for source domain."""
+
+    def __init__(self, configs):
+        """Init discriminator."""
+        super(Discriminator, self).__init__()
+
+        self.layer = nn.Sequential(
+            nn.Linear(configs.features_len * configs.final_out_channels, configs.disc_hid_dim),
+            nn.ReLU(),
+            nn.Linear(configs.disc_hid_dim, configs.disc_hid_dim),
+            nn.ReLU(),
+            nn.Linear(configs.disc_hid_dim, 2)
+            # nn.LogSoftmax(dim=1)
+        )
+
+    def forward(self, input):
+        """Forward the discriminator."""
+        out = self.layer(input)
+        return out
+    
+
+
+#### Codes required by DANN ##############
+class ReverseLayerF(Function):
+    @staticmethod
+    def forward(ctx, x, alpha):
+        ctx.alpha = alpha
+        return x.view_as(x)
+
+    @staticmethod
+    def backward(ctx, grad_output):
+        output = grad_output.neg() * ctx.alpha
+        return output, None

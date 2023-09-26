@@ -14,10 +14,10 @@ if __name__ == '__main__':
     parser.add_argument('--exp_name', default='exp1', type=str, help='experiment name')
     
     # ========== Data ==========
-    parser.add_argument('--dataset', type=str, default='airbox', help='dataset name')
+    parser.add_argument('--dataset', type=str, default='Airbox', help='dataset name')
     
     # ========== DA method ==========
-    parser.add_argument('--da_method', type=str, default='dann', help='Algorithm : (DANN)')
+    parser.add_argument('--da_method', type=str, default='AirDA', help='Algorithm : (NO_ADAPT, DANN, DIRT, MMDA)')
     
     # ========== Backbone ==========
     parser.add_argument('--backbone', type=str, default='GRU', help='Backbone : (GRU)')

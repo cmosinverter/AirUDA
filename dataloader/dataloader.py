@@ -42,7 +42,7 @@ class Load_Dataset(Dataset):
         return self.len
 
 
-def data_generator(data_path, domain_id, dataset_configs, hparams, dtype):
+def data_generator(data_path, domain_id, dataset_configs, hparams):
     # loading dataset file from path
     dataset_file = torch.load(os.path.join(data_path, f"{domain_id}.pt"))
 
@@ -54,7 +54,8 @@ def data_generator(data_path, domain_id, dataset_configs, hparams, dtype):
     # Dataloaders
     data_loader = torch.utils.data.DataLoader(dataset=dataset, 
                                               batch_size=hparams["batch_size"],
-                                              num_workers=0)
+                                              num_workers=0,
+                                              shuffle=False)
 
     return data_loader
 
